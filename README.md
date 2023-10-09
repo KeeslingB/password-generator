@@ -12,6 +12,6 @@
 ## Project.
 this is a picture displaying the finished project page.
 ![Alt text](image.png) 
-link to project:
+link to project: https://keeslingb.github.io/password-generator/
 
-link to GitHub Repo:
+link to GitHub Repo: https://github.com/KeeslingB/password-generator
