@@ -1,98 +1,85 @@
 var generateBtn = document.querySelector("#generate");
 
-var upperCaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-var lowerCaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
-  "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
 
-var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var numbers = '123456789';
 
-var specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*"];
+var specialCharacters = '!@#$%^&*()_+';
 
-var finalPass = [""];
+var finalPass = "";
 
-var numberOfCharacthers = [""];
-
-// var numberOfCharacthers = prompt("How many Characters?");  
-// var lettersPrompt = confirm("Would you like upper case letters?");
-// var numberPrompt = confirm("Would you like numbers?");
-// var lowerCase = confirm("Would you like special charecters?");
-
-
+var length = null;
 
 function generatePassword() {
- passwordLength();
- lowerCase();
- upperCasePrompt();
- numbersInc();
- specialC();
- for(var i = 0; i < finalPass.length; i++){
-  // finalPass = Math.floor(Math.random() * passwordLength.length);
-  console.log(finalPass);
- }return finalPass;
+  length = passwordLength();
+  if (length.ok === false) { return; }
+  lowerCase();
+  upperCasePrompt();
+  numbersInc();
+  specialC();
+  let password = compilePassword();
+  return password;
 }
 
+function compilePassword() {
+  let compiledPassword = "";
+  for (i = 0; i < length.length; i++) {
+    let randomIndex = Math.floor(Math.random() * finalPass.length - 1);
+    compiledPassword += finalPass[randomIndex];
+  }
+  return compiledPassword;
+}
 
-
-
-
-function passwordLength(numberOfCharacthers) {
-  numberOfCharecters = prompt('How many charecters would you like included?');
-  if (numberOfCharecters < 8 || numberOfCharecters > 128) {
+function passwordLength() {
+  const numberOfCharacters = prompt('How many charecters would you like included?');
+  if (numberOfCharacters < 8 || numberOfCharacters > 128) {
     alert('Password must be between 8-128 charecters!');
-  }return;
+    return { ok: false };
+  }
+  console.log(numberOfCharacters);
+  return { ok: true, length: numberOfCharacters };
 }
 
-function lowerCase () {
+function lowerCase() {
   lowerPrompt = confirm('Would you like Lowercase letters included?');
-  if(lowerPrompt) {
+  if (lowerPrompt) {
     finalPass = (lowerCaseLetters + finalPass);
-  }return;
+    return;
+  }
 }
 
 function upperCasePrompt() {
-   lettersPrompt = confirm('Would you like upper case letters included?')
+  lettersPrompt = confirm('Would you like upper case letters included?')
   if (lettersPrompt) {
     finalPass = (upperCaseLetters + finalPass);
-  }return;
+    return;
+  }
 }
 
 function numbersInc() {
   numbersP = confirm('Would you like numbers included?');
   if (numbersP) {
     finalPass = (numbers + finalPass);
-  }return;
+    return;
+  }
 }
 
-function specialC() { 
-   special = confirm('Would you like special charecters included?');
+function specialC() {
+  special = confirm('Would you like special charecters included?');
   if (special) {
     finalPass = (specialCharacters + finalPass);
-  }return;
+    return;
+  }
 }
 
-
-// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword); {
-
 }
-
-
-
-// function passLength() {        // between 8-128
-//   lengthP = prompt('How many Charecters would you like?')
-//   if (lengthP < 8 || lengthP > 128) {
-//     alert('Your password must be between 8 and 128 charecters in length.')
-//   }return finalPass;
-//
-
 
