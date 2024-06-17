@@ -1,12 +1,12 @@
 var generateBtn = document.querySelector("#generate");
 
-var upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-var lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+var lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
 
-var numbers = '123456789';
+var numbers = "123456789";
 
-var specialCharacters = '!@#$%^&*()_+';
+var specialCharacters = "!@#$%^&*()_+";
 
 var finalPass = "";
 
@@ -14,7 +14,9 @@ var length = null;
 
 function generatePassword() {
   length = passwordLength();
-  if (length.ok === false) { return; }
+  if (length.ok === false) {
+    return;
+  }
   lowerCase();
   upperCasePrompt();
   numbersInc();
@@ -33,9 +35,11 @@ function compilePassword() {
 }
 
 function passwordLength() {
-  const numberOfCharacters = prompt('How many charecters would you like included?');
+  const numberOfCharacters = prompt(
+    "How many charecters would you like included?"
+  );
   if (numberOfCharacters < 8 || numberOfCharacters > 128) {
-    alert('Password must be between 8-128 charecters!');
+    alert("Password must be between 8-128 charecters!");
     return { ok: false };
   }
   console.log(numberOfCharacters);
@@ -43,33 +47,33 @@ function passwordLength() {
 }
 
 function lowerCase() {
-  lowerPrompt = confirm('Would you like Lowercase letters included?');
+  let lowerPrompt = confirm("Would you like Lowercase letters included?");
   if (lowerPrompt) {
-    finalPass = (lowerCaseLetters + finalPass);
+    finalPass = lowerCaseLetters + finalPass;
     return;
   }
 }
 
 function upperCasePrompt() {
-  lettersPrompt = confirm('Would you like upper case letters included?')
+  let lettersPrompt = confirm("Would you like upper case letters included?");
   if (lettersPrompt) {
-    finalPass = (upperCaseLetters + finalPass);
+    finalPass = upperCaseLetters + finalPass;
     return;
   }
 }
 
 function numbersInc() {
-  numbersP = confirm('Would you like numbers included?');
+  let numbersP = confirm("Would you like numbers included?");
   if (numbersP) {
-    finalPass = (numbers + finalPass);
+    finalPass = numbers + finalPass;
     return;
   }
 }
 
 function specialC() {
-  special = confirm('Would you like special charecters included?');
+  let special = confirm("Would you like special charecters included?");
   if (special) {
-    finalPass = (specialCharacters + finalPass);
+    finalPass = specialCharacters + finalPass;
     return;
   }
 }
@@ -80,6 +84,6 @@ function writePassword() {
   passwordText.value = password;
 }
 
-generateBtn.addEventListener("click", writePassword); {
+generateBtn.addEventListener("click", writePassword);
+{
 }
-
